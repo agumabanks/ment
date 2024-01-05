@@ -25,3 +25,30 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+/* styles/AutoScrollingLogos.module.css */
+autoScrollingLogosContainer {
+  display: flex;
+  overflow: hidden;
+}
+
+partnerLogo {
+  width: 150px; /* Set your logo width */
+  height: 100px; /* Set your logo height */
+  margin-right: 20px; /* Adjust spacing between logos */
+  background-color: #ccc; /* Set background color or add your logo image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scroll 20s linear infinite; /* Adjust the duration as needed */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

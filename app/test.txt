@@ -1,0 +1,182 @@
+
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Include PHPMailer autoload file
+// require 'path/to/PHPMailer/src/PHPMailer.php';
+// require 'path/to/PHPMailer/src/SMTP.php';
+// require 'path/to/PHPMailer/src/Exception.php';
+
+require 'vendor/autoload.php';
+require 'include/src/PHPMailer.php';
+require 'include/src/SMTP.php';
+require 'include/src/Exception.php';
+
+if (isset($_POST['submit'])) {
+    // Form data
+    $full_name = $_POST['full_name'];
+    $country = $_POST['country'];
+    $email_address = $_POST['email_address'];
+    $hotel = $_POST['hotel'];
+    $check_in_date = $_POST['check_in_date'];
+    $check_out_date = $_POST['check_out_date'];
+    $number_of_adults = $_POST['number_of_adults'];
+    $number_of_children = $_POST['number_of_children'];
+    $room_number = $_POST['room_number'];
+    $airport_pickup = $_POST['airport_pickup'];
+
+    // Create a new PHPMailer instance
+    $mail = new PHPMailer(true);
+
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host = 'mail.nsim-marketing.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'support@nsim-marketing.com';
+        $mail->Password = 'admin54321@nsim';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SSL;
+        $mail->Port = 465;
+
+        // Recipients
+        $mail->setFrom($email_address, $full_name);
+        $mail->addAddress('info@nsim-marketing.com', 'Nsim Marketing');
+        $mail->addReplyTo('info@nsim-marketing.com', 'Booking Hotel Support');
+        $mail->addAddress('nsimmarketing@gmail.com', 'Nsim Marketing');
+        $mail->addReplyTo('nsimmarketing@gmail.com', 'Booking Hotel Support');
+        $mail->addAddress('ninsiimaivy@gmail.com', 'Nsim Marketing');
+        $mail->addReplyTo('ninsiimaivy@gmail.com', 'Booking Hotel Support');
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Hotel Booking Request';
+        $mail->Body = "
+            <p><strong>Full Name:</strong> $full_name</p>
+            <p><strong>Country:</strong> $country</p>
+            <p><strong>Email Address:</strong> $email_address</p>
+            <p><strong>Hotel:</strong> $hotel</p>
+            <p><strong>Check-in Date:</strong> $check_in_date</p>
+            <p><strong>Check-out Date:</strong> $check_out_date</p>
+            <p><strong>Number of Adults:</strong> $number_of_adults</p>
+            <p><strong>Number of Children:</strong> $number_of_children</p>
+            <p><strong>Room Number:</strong> $room_number</p>
+            <p><strong>Airport Pickup:</strong> $airport_pickup</p>
+        ";
+
+        // Send email
+        $mail->send();
+        echo "Email sent successfully. Check your inbox for a confirmation.";
+    } catch (Exception $e) {
+        echo "Error sending email. Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+?>
+
+
+
+
+
+
+
+
+
+<!--<?php-->
+<!--use PHPMailer\PHPMailer\PHPMailer;-->
+<!--use PHPMailer\PHPMailer\Exception;-->
+
+
+
+
+// Check if the form is submitted
+<!--if (isset($_POST['submit'])) {-->
+
+<!--    $full_name = $_POST['full_name'];-->
+<!--    $country = $_POST['country'];-->
+<!--    $email_address = $_POST['email_address'];-->
+<!--    $hotel = $_POST['hotel'];-->
+<!--    $check_in_date = $_POST['check_in_date'];-->
+<!--    $check_out_date = $_POST['check_out_date'];-->
+<!--    $number_of_adults = $_POST['number_of_adults'];-->
+<!--    $number_of_children = $_POST['number_of_children'];-->
+<!--    $room_number = $_POST['room_number'];-->
+<!--    $airport_pickup = $_POST['airport_pickup'];-->
+
+<!--    $mail = new PHPMailer(true);-->
+
+<!--    try {-->
+        // Server settings
+<!--        $mail->isSMTP();-->
+<!--        $mail->Host = 'mail.nsim-marketing.com';-->
+<!--        $mail->SMTPAuth = true;-->
+<!--        $mail->Username = 'support@nsim-marketing.com';-->
+<!--        $mail->Password = 'admin54321@nsim';-->
+<!--        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SSL;-->
+<!--        $mail->Port = 465;-->
+
+        // Recipients
+<!--        $mail->setFrom($email_address, $full_name);-->
+<!--        $mail->addAddress('info@nsim-marketing.com', 'Nsim Marketing');-->
+<!--        $mail->addReplyTo('info@nsim-marketing.com', 'Booking Hotel Support');-->
+<!--        $mail->addAddress('nsimmarketing@gmail.com', 'Nsim Marketing');-->
+<!--        $mail->addReplyTo('nsimmarketing@gmail.com', 'Booking Hotel Support');-->
+<!--        $mail->addAddress('ninsiimaivy@gmail.com', 'Nsim Marketing');-->
+<!--        $mail->addReplyTo('ninsiimaivy@gmail.com', 'Booking Hotel Support');-->
+
+        // Content
+<!--        $mail->isHTML(true);-->
+<!--        $mail->Subject = 'Booking a Hotel from Nsim Marketing';-->
+<!--        $mail->Body = 'Dear Nsim Marketing Team,<br/><br/>-->
+<!--        I hope this email finds you well. I am writing to inquire about the availability of rooms at <b>' . $hotel . '</b> for my stay in Uganda. I am coming from <b>' . $country . '</b> and I have heard wonderful things about its establishment and would like to explore the possibility of staying there.<br/><br/>-->
+        
+<!--        Here are the details of my stay:<br/><br/>-->
+        
+<!--        Country of origin: <b>' . $country . '</b><br/>-->
+<!--        Hotel: <b>' . $hotel . '</b><br/>-->
+<!--        Check-in Date: <b>' . $check_in_date. '</b><br/>-->
+<!--        Check-out Date: <b>' . $check_out_date . '</b><br/>-->
+<!--        Number of Guests: <b>' . $number_of_adults . '</b> adults and <b>' . $number_of_children . '</b> children <br/>-->
+<!--        Number of Rooms: <b>' . $room_number . '</b> Room(s) <br/>-->
+<!--        Pick me from airport: <b>' . $airport_pickup . '</b> <br/><br/>-->
+
+<!--        Could you please provide me with information about the availability of the room(s) for the specified dates and the associated rates? Kindly provide me with the necessary steps and payment information to secure the reservation in case availability aligns with my dates.<br/><br/>-->
+        
+<!--        Thank you for your time and assistance. I look forward to the possibility of staying at <b>' . $hotel . '</b>.<br/><br/>-->
+        
+<!--        Best regards,<br/><br/>-->
+        
+<!--        ' . $full_name . '<br/>-->
+<!--        ' . $email_address;-->
+
+<!--        $mail->AltBody = 'Dear Nsim Marketing Team,<br/><br/>-->
+
+<!--        I hope this email finds you well. I am writing to inquire about the availability of rooms at <b>' . $hotel . '</b> for my stay in Uganda. I am coming from <b>' . $country . '</b> and I have heard wonderful things about its establishment and would like to explore the possibility of staying there.<br/><br/>-->
+        
+<!--        Here are the details of my stay:<br/><br/>-->
+        
+<!--        Hotel: <b>' . $hotel . '</b><br/>-->
+<!--        Check-in Date: <b>' . $check_in_date. '</b><br/>-->
+<!--        Check-out Date: <b>' . $check_out_date . '</b><br/>-->
+<!--        Number of Guests: <b>' . $number_of_adults . '</b> adults and <b>' . $number_of_children . '</b> children <br/>-->
+<!--        Number of Rooms: <b>' . $room_number . '</b> Room(s) <br/>-->
+<!--        Pick me from airport: <b>' . $airport_pickup . '</b> <br/><br/>-->
+
+<!--        Could you please provide me with information about the availability of the room(s) for the specified dates and the associated rates? Kindly provide me with the necessary steps and payment information to secure the reservation in case availability aligns with my dates.<br/><br/>-->
+        
+<!--        Thank you for your time and assistance. I look forward to the possibility of staying at <b>' . $hotel . '</b>.<br/><br/>-->
+        
+<!--        Best regards,<br/><br/>-->
+        
+<!--        ' . $full_name . '<br/>-->
+<!--        ' . $email_address;-->
+
+<!--        $mail->send();-->
+<!--        header("Location: https://www.nsim-marketing.com/success-email.php", true, 301);-->
+<!--        exit();-->
+<!--    } catch (Exception $e) {-->
+<!--        header("Location: https://www.nsim-marketing.com/error-email.php", true, 301);-->
+<!--        exit();-->
+<!--    }-->
+<!--}-->
+<!--?>-->
